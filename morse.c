@@ -25,32 +25,40 @@ void traco()
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, HIGH);
-	#endif
 	delay(TRACO);
+	#endif
 }
 
 void ponto() 
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, HIGH);
-	#endif
 	delay(PONTO);
+	#endif
 }
 
 void separacao_traco() 
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, LOW);
-	#endif
 	delay(SEPARACAO_TRACO);
+	#endif
 }
 
 void separacao_digito() 
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, LOW);
-	#endif
-	delay(SEPARACAO_DIGITO)
+	delay(SEPARACAO_DIGITO);
+	#endif	
+}
+
+void separacao_letra()
+{
+	#ifdef AAC_RASPBERRY
+	digitalWrite(AMARELO, LOW);
+	delay(SEPARACAO_LETRA);
+	#endif	
 }
 
 void digito_0() 
@@ -166,7 +174,7 @@ void digito_9()
 	traco();
 }
 
-void digito_c() 
+void letra_c() 
 {
 	traco();
 	separacao_traco();
@@ -208,7 +216,7 @@ void testar_digito(int digito)
 	case 8:
 		digito_8();
 		break;
-	case 9:
+	default 9:
 		digito_9();
 		break;
 	}
@@ -218,16 +226,26 @@ void ler_temperatura()
 {
 	int digito_1, digito_2;
 	uint8_t humidade = 0, temperatura = 0; 
+	
 	ler_sensor(&humidade, &temperatura);
-	sscanf(humidade, %d%d, digito_1, digito_2);
-	//printf("Humidade: %d  ||  Temperatura: %d\n", humidade, temperatura);
+	
+	// decompõe digitos do valor humidade
+	digito_2 = humidade % 10;
+	humidade /= 10;
+	digito_1 = humidade % 10;
+	
+	testar_digito(digito_1);
+	separacao_digito();
+	testar_digito(digito_2);
+	separacao_letra();
+	letra_c();
+	
 	alarm(TIMER);
 }
 
 int main(int argc, char** argv)
 {
-// receber temperatura
-
-  for(;;);
+	// incompleto
+	for(;;);
 }
 
