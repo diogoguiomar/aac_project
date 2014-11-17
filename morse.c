@@ -18,172 +18,8 @@
 
 #include "wunderground.h"
 #include "morse.h"
+#include "morse_digitos.h"
 #include "dht11ler.h"
-
-
-void traco() 
-{
-	#ifdef AAC_RASPBERRY
-	digitalWrite(AMARELO, HIGH);
-	delay(TRACO);
-	#endif
-}
-
-void ponto() 
-{
-	#ifdef AAC_RASPBERRY
-	digitalWrite(AMARELO, HIGH);
-	delay(PONTO);
-	#endif
-}
-
-void separacao_traco() 
-{
-	#ifdef AAC_RASPBERRY
-	digitalWrite(AMARELO, LOW);
-	delay(SEPARACAO_TRACO);
-	#endif
-}
-
-void separacao_digito() 
-{
-	#ifdef AAC_RASPBERRY
-	digitalWrite(AMARELO, LOW);
-	delay(SEPARACAO_DIGITO);
-	#endif	
-}
-
-void separacao_letra()
-{
-	#ifdef AAC_RASPBERRY
-	digitalWrite(AMARELO, LOW);
-	delay(SEPARACAO_LETRA);
-	#endif	
-}
-
-void digito_0() 
-{
-	for (int i = 0; i <= 5; i++) {
-		traco();
-		if (i == 4) break;
-		separacao_traco();
-	}
-}
-
-void digito_1() 
-{
-	ponto();
-	separacao_traco();
-	for (int i = 0; i <= 4; i++) {
-		traco();
-		if (i == 3) break;
-		separacao_traco();
-	}
-}
-
-void digito_2() 
-{
-	for (int i = 0; i <= 2; i++) {
-		ponto();
-		separacao_traco();
-	}
-	
-	for (int j = 0; j <= 3; j++) {
-		traco();
-		if (j == 2) break;
-		separacao_traco();
-	}
-}
-
-void digito_3() 
-{
-	for (int i = 0; i <= 3; i++) {
-		ponto();
-		separacao_traco();
-	}
-	
-	for (int j = 0; j <= 2; j++) {
-		traco();
-		if (j == 1) break;
-		separacao_traco();
-	}
-}
-
-void digito_4() 
-{
-	for (int i = 0; i <= 4; i++) {
-		traco();
-		separacao_traco();
-	}
-	ponto();
-}
-
-void digito_5() 
-{
-	for (int i = 0; i <= 5; i++) {
-		ponto();
-		if (i == 4) break;
-		separacao_traco();
-	}
-}
-
-void digito_6() 
-{
-	traco();
-	for (int i = 0; i <= 4; i++) {
-		ponto();
-		if (i == 3) break;
-		separacao_traco();
-	}
-}
-
-void digito_7() 
-{
-	for (int i = 0; i <= 2; i++) {
-		traco();
-		separacao_traco();
-	}
-	
-	for (int j = 0; j <= 3; j++) {
-		ponto();
-		if (j == 2) break;
-		separacao_traco();
-	}
-}
-
-void digito_8() 
-{
-	for (int i = 0; i <= 3; i++) {
-		traco();
-		separacao_traco();
-	}
-	
-	for (int j = 0; j <= 2; j++) {
-		ponto();
-		if (j == 1) break;
-		separacao_traco();
-	}
-}
-
-void digito_9() 
-{
-	for (int i = 0; i <= 4; i++) {
-		ponto();
-		separacao_traco();
-	}
-	traco();
-}
-
-void letra_c() 
-{
-	traco();
-	separacao_traco();
-	ponto();
-	separacao_traco();
-	traco();
-	separacao_traco();
-	ponto();
-}
 
 void testar_digito(int digito) 
 {
@@ -216,7 +52,7 @@ void testar_digito(int digito)
 	case 8:
 		digito_8();
 		break;
-	default 9:
+	default:
 		digito_9();
 		break;
 	}
@@ -229,23 +65,33 @@ void ler_temperatura()
 	
 	ler_sensor(&humidade, &temperatura);
 	
-	// decompõe digitos do valor humidade
+	// decompõe digitos do valor temperatura
 	digito_2 = temperatura % 10;
 	temperatura /= 10;
 	digito_1 = temperatura % 10;
 	
+	printf("Temperatura local: %d%d C  ", digito_1, digito_2);
 	testar_digito(digito_1);
 	separacao_digito();
 	testar_digito(digito_2);
 	separacao_letra();
 	letra_c();
 	
+	printf("\n");
+	
 	alarm(TIMER);
+}
+
+void ler_dados() 
+{
+
 }
 
 int main(int argc, char** argv)
 {
 	// incompleto
+	signal(SIGALRM, ler_temperatura);
+	ler_temperatura();
 	for(;;);
 }
 

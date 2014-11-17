@@ -9,4 +9,8 @@
 #define SEPARACAO_LETRA 700
 #define TIMER 15
 
+#define AMARELO 4
+#define VERDE X
+#define VERMELHO X
+
 #endif
