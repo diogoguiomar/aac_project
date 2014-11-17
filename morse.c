@@ -230,9 +230,9 @@ void ler_temperatura()
 	ler_sensor(&humidade, &temperatura);
 	
 	// decompõe digitos do valor humidade
-	digito_2 = humidade % 10;
-	humidade /= 10;
-	digito_1 = humidade % 10;
+	digito_2 = temperatura % 10;
+	temperatura /= 10;
+	digito_1 = temperatura % 10;
 	
 	testar_digito(digito_1);
 	separacao_digito();
