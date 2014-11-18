@@ -77,7 +77,7 @@ void testar_digito(int digito)
 	}
 }
 
-void ler_temperatura(int temperatura)
+void ler_temperatura(uint8_t temperatura)
 {
 	int digito_1, digito_2;
 	// (por fazer) estrutura de controlo para leitura digito a digito
@@ -98,13 +98,14 @@ void ler_temperatura(int temperatura)
 void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 {
 	// caso exista algum erro na leitura dos sensores, o valor devolvido e' 0 (zero)
-	if ((humidade_aeroporto != 0) && (humidade =! 0) {
-	
+	if (humidade_aeroporto && humidade) {
+
 		double variacao = humidade + (humidade * PERCENTAGEM);
-		
+
 		printf("Humidade local: %d\n", humidade);
 		printf("Humidade aeroporto: %d\n", humidade_aeroporto);
 
+		#ifdef AAC_RASPBERRY
 		if ((variacao < humidade_aeroporto) || (variacao > humidade_aeroporto)) {
 			digitalWrite(VERMELHO, HIGH);
 			digitalWrite(VERDE, LOW);
@@ -112,6 +113,7 @@ void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 			digitalWrite(VERMELHO, LOW);
 			digitalWrite(VERDE, HIGH);
 		}
+		#endif
 	}
 }
 

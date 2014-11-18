@@ -17,9 +17,9 @@ void confirma();
 
 void testar_digito();
 
-void ler_temperatura(int temperatura);
+void ler_temperatura(uint8_t temperatura);
 
-void ler_humidade(int humidade);
+void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto);
 
 void ler_dados();
 
