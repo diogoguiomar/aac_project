@@ -10,7 +10,7 @@
 #include "morse.h"
 #include "morse_digitos.h"
 
-void traco() 
+void traco()
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, HIGH);
@@ -19,7 +19,7 @@ void traco()
 	printf("-");
 }
 
-void ponto() 
+void ponto()
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, HIGH);
@@ -28,7 +28,7 @@ void ponto()
 	printf(".");
 }
 
-void separacao_traco() 
+void separacao_traco()
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, LOW);
@@ -36,12 +36,12 @@ void separacao_traco()
 	#endif
 }
 
-void separacao_digito() 
+void separacao_digito()
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, LOW);
 	delay(SEPARACAO_DIGITO);
-	#endif	
+	#endif
 	printf("  ");
 }
 
@@ -50,11 +50,11 @@ void separacao_letra()
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, LOW);
 	delay(SEPARACAO_LETRA);
-	#endif	
+	#endif
 	printf("  ");
 }
 
-void digito_0() 
+void digito_0()
 {
 	int i;
 	for (i = 0; i <= 5; i++) {
@@ -64,7 +64,7 @@ void digito_0()
 	}
 }
 
-void digito_1() 
+void digito_1()
 {
 	int i;
 	ponto();
@@ -76,14 +76,14 @@ void digito_1()
 	}
 }
 
-void digito_2() 
+void digito_2()
 {
 	int i;
 	for (i = 0; i <= 2; i++) {
 		ponto();
 		separacao_traco();
 	}
-	
+
 	for (i = 0; i <= 3; i++) {
 		traco();
 		if (i == 2) break;
@@ -91,14 +91,14 @@ void digito_2()
 	}
 }
 
-void digito_3() 
+void digito_3()
 {
 	int i;
 	for (i = 0; i <= 3; i++) {
 		ponto();
 		separacao_traco();
 	}
-	
+
 	for (i = 0; i <= 2; i++) {
 		traco();
 		if (i == 1) break;
@@ -106,7 +106,7 @@ void digito_3()
 	}
 }
 
-void digito_4() 
+void digito_4()
 {
 	int i;
 	for (i = 0; i <= 4; i++) {
@@ -116,7 +116,7 @@ void digito_4()
 	ponto();
 }
 
-void digito_5() 
+void digito_5()
 {
 	int i;
 	for (i = 0; i <= 5; i++) {
@@ -126,7 +126,7 @@ void digito_5()
 	}
 }
 
-void digito_6() 
+void digito_6()
 {
 	int i;
 	traco();
@@ -137,14 +137,14 @@ void digito_6()
 	}
 }
 
-void digito_7() 
+void digito_7()
 {
 	int i;
 	for (i = 0; i <= 2; i++) {
 		traco();
 		separacao_traco();
 	}
-	
+
 	for (i = 0; i <= 3; i++) {
 		ponto();
 		if (i == 2) break;
@@ -152,14 +152,14 @@ void digito_7()
 	}
 }
 
-void digito_8() 
+void digito_8()
 {
 	int i;
 	for (i = 0; i <= 3; i++) {
 		traco();
 		separacao_traco();
 	}
-	
+
 	for (i = 0; i <= 2; i++) {
 		ponto();
 		if (i == 1) break;
@@ -167,7 +167,7 @@ void digito_8()
 	}
 }
 
-void digito_9() 
+void digito_9()
 {
 	int i;
 	for (i = 0; i <= 4; i++) {
@@ -177,15 +177,15 @@ void digito_9()
 	traco();
 }
 
-void letra_c() 
+void letra_c()
 {
-	traco();
-	separacao_traco();
-	ponto();
-	separacao_traco();
-	traco();
-	separacao_traco();
-	ponto();
+	int i;
+	for (i = 0; i <= 2; i++) {
+		traco();
+		separacao_traco();
+		ponto();
+	}
+
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, LOW);
 	#endif
