@@ -98,7 +98,7 @@ void ler_temperatura(uint8_t temperatura)
 void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 {
 	// caso exista algum erro na leitura dos sensores, o valor devolvido e' 0 (zero)
-	if (humidade_aeroporto && humidade) {
+	if (!(humidade_aeroporto && humidade)) {
 
 		double variacao = humidade + (humidade * PERCENTAGEM);
 
