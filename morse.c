@@ -95,31 +95,34 @@ void ler_temperatura(int temperatura)
 	printf("\n");
 }
 
-void ler_humidade(int humidade)
+void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 {
-	int humidade_aeroporto = 0;
-	double variacao = humidade + (humidade * PERCENTAGEM);
+	// caso exista algum erro na leitura dos sensores, o valor devolvido e' 0 (zero)
+	if ((humidade_aeroporto != 0) && (humidade =! 0) {
+	
+		double variacao = humidade + (humidade * PERCENTAGEM);
+		
+		printf("Humidade local: %d\n", humidade);
+		printf("Humidade aeroporto: %d\n", humidade_aeroporto);
 
-	// (por fazer) receber valores do aeroporto
-
-	printf("Humidade local: %d\n", humidade);
-	printf("Humidade aeroporto: %d\n", humidade_aeroporto);
-
-	if ((variacao < humidade_aeroporto) || (variacao > humidade_aeroporto)) {
-		// (por fazer) acende vermelho
-	} else {
-		// (por fazer) acende verde
+		if ((variacao < humidade_aeroporto) || (variacao > humidade_aeroporto)) {
+			digitalWrite(VERMELHO, HIGH);
+			digitalWrite(VERDE, LOW);
+		} else {
+			digitalWrite(VERMELHO, LOW);
+			digitalWrite(VERDE, HIGH);
+		}
 	}
-
-	// (por fazer) se a leitura falha, manter o ultimo estado
 }
 
 void ler_dados()
 {
 	uint8_t humidade = 0, temperatura = 0;
+	uint8_t humidade_aeroporto = 0, temperatura_aeroporto = 0;
 
+	wunder_read(&humidade_aeroporto, &temperatura_aeroporto);
 	ler_sensor(&humidade, &temperatura);
-	ler_humidade(humidade);
+	ler_humidade(humidade, humidade_aeroporto);
 	ler_temperatura(temperatura);
 	alarm(TIMER);
 }
@@ -133,6 +136,7 @@ int main(int argc, char** argv)
 	pinMode(VERDE, OUTPUT);
 	#endif
 
+	wunder_init();
 	signal(SIGALRM, ler_dados);
 	ler_temperatura();
 	signal(SIGINT, confirma);
