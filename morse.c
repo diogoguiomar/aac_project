@@ -79,6 +79,7 @@ void testar_digito(int digito)
 
 void ler_temperatura(int temperatura)
 {
+	int digito_1, digito_2;
 	// (por fazer) estrutura de controlo para leitura digito a digito
 	// decompõe digitos do valor temperatura
 	digito_2 = temperatura % 10;
@@ -115,7 +116,6 @@ void ler_humidade(int humidade)
 
 void ler_dados()
 {
-	int digito_1, digito_2;
 	uint8_t humidade = 0, temperatura = 0;
 
 	ler_sensor(&humidade, &temperatura);
