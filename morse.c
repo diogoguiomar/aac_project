@@ -11,6 +11,8 @@
 #include <signal.h>
 #include <unistd.h>
 #include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
 
 #ifdef AAC_RASPBERRY
 #include <wiringPi.h>
@@ -140,7 +142,7 @@ int main(int argc, char** argv)
 
 	wunder_init();
 	signal(SIGALRM, ler_dados);
-	ler_temperatura();
+	ler_dados();
 	signal(SIGINT, confirma);
 	for(;;);
 }
