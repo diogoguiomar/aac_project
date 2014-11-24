@@ -10,8 +10,8 @@
 #define PERCENTAGEM 0.15
 
 #define AMARELO 4
-#define VERDE 1
-#define VERMELHO 5
+#define VERDE 0
+#define VERMELHO 7
 
 void confirma();
 

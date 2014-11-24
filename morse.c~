@@ -7,7 +7,6 @@
  *
  * Ficheiro principal de codigo fonte
  */
- // scp -r TP02 pi@192.168.20.2:/home/pi/Desktop
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
