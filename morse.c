@@ -80,7 +80,7 @@ void testar_digito(int digito)
 	}
 }
 
-void ler_temperatura(uint8_t temperatura)
+void ler_temperatura(uint8_t temperatura, uint8_t temperatura_aeroporto)
 {
 	int digito_1, digito_2;
 	// (por fazer) estrutura de controlo para leitura digito a digito
@@ -89,6 +89,7 @@ void ler_temperatura(uint8_t temperatura)
 	temperatura /= 10;
 	digito_1 = temperatura % 10;
 
+	printf("Temperatura aeroporto: %d C\n", temperatura_aeroporto);
 	printf("Temperatura local: %d%d C  ", digito_1, digito_2);
 	testar_digito(digito_1);
 	separacao_digito();
@@ -100,24 +101,20 @@ void ler_temperatura(uint8_t temperatura)
 
 void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 {
-	// caso exista algum erro na leitura dos sensores, o valor devolvido e' 0 (zero)
-	if (!(humidade_aeroporto && humidade)) {
-
-		double variacao = humidade + (humidade * PERCENTAGEM);
-
+		printf("--------------\n");
 		printf("Humidade local: %d\n", humidade);
 		printf("Humidade aeroporto: %d\n", humidade_aeroporto);
 
 		#ifdef AAC_RASPBERRY
-		if ((variacao < humidade_aeroporto) || (variacao > humidade_aeroporto)) {
-			digitalWrite(VERMELHO, HIGH);
-			digitalWrite(VERDE, LOW);
-		} else {
+		double variacao = humidade * PERCENTAGEM;
+		if ((humidade_aeroporto < (humidade + variacao)) && (humidade_aeroporto > (humidade - variacao))) {
 			digitalWrite(VERMELHO, LOW);
 			digitalWrite(VERDE, HIGH);
+		} else {
+			digitalWrite(VERMELHO, HIGH);
+			digitalWrite(VERDE, LOW);
 		}
 		#endif
-	}
 }
 
 void ler_dados()
@@ -125,10 +122,17 @@ void ler_dados()
 	uint8_t humidade = 0, temperatura = 0;
 	uint8_t humidade_aeroporto = 0, temperatura_aeroporto = 0;
 
-	wunder_read(&humidade_aeroporto, &temperatura_aeroporto);
-	ler_sensor(&humidade, &temperatura);
-	ler_humidade(humidade, humidade_aeroporto);
-	ler_temperatura(temperatura);
+	uint8_t test1 = wunder_read(&humidade_aeroporto, &temperatura_aeroporto);
+	uint8_t test2 = ler_sensor(&humidade, &temperatura);
+	
+	// verificar erros pelo retorno das funcoes
+	if (test1 && test2) {
+		ler_humidade(humidade, humidade_aeroporto);
+		ler_temperatura(temperatura, temperatura_aeroporto);
+	}
+	else {
+		printf("Erro de leitura.");
+	}
 	alarm(TIMER);
 }
 
