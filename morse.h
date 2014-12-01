@@ -8,16 +8,18 @@
 #define SEPARACAO_LETRA 700
 #define TIMER 15
 #define PERCENTAGEM 0.15
+#define FREQ 1046
 
-#define AMARELO 4
-#define VERDE 1
-#define VERMELHO 5
+#define BESOURO 1 // 18
+#define AMARELO 4 // 23
+#define VERDE 6 // 25
+#define VERMELHO 5 // 24
 
 void confirma();
 
 void testar_digito();
 
-void ler_temperatura(uint8_t temperatura);
+void ler_temperatura(uint8_t temperatura, uint8_t temperatura_aeroporto);
 
 void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto);
 

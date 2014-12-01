@@ -5,6 +5,7 @@
 
 #ifdef AAC_RASPBERRY
 #include <wiringPi.h>
+#include <softTone.h>
 #endif
 
 #include "morse.h"
@@ -14,7 +15,9 @@ void traco()
 {
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, HIGH);
+	softToneWrite(BESOURO, FREQ);
 	delay(TRACO);
+	softToneWrite(BESOURO, 0);
 	#endif
 	printf("-");
 }
@@ -22,8 +25,10 @@ void traco()
 void ponto()
 {
 	#ifdef AAC_RASPBERRY
+	softToneWrite(BESOURO, FREQ);
 	digitalWrite(AMARELO, HIGH);
 	delay(PONTO);
+	softToneWrite(BESOURO, 0);
 	#endif
 	printf(".");
 }

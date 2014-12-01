@@ -10,14 +10,14 @@
 #define PERCENTAGEM 0.15
 
 #define AMARELO 4
-#define VERDE 0
-#define VERMELHO 7
+#define VERDE 1
+#define VERMELHO 5
 
 void confirma();
 
 void testar_digito();
 
-void ler_temperatura(uint8_t temperatura);
+void ler_temperatura(uint8_t temperatura, uint8_t temperatura aeroporto);
 
 void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto);
 
