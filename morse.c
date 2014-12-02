@@ -1,13 +1,13 @@
 /*
  * AAC 2014/2015 - Projecto
  *
- * Grupo xx:
+ * Grupo 02:
  * Diogo Guiomar - aluno 21302748
- * Nome aluno - aluno 2xxxxxxx
+ * Miguel Tavares - aluno 21304351
  *
  * Ficheiro principal de codigo fonte
  */
- // scp -r TP02 pi@192.168.20.2:/home/pi/Desktop
+ 
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
@@ -77,7 +77,7 @@ void testar_digito(int digito)
 void ler_temperatura(uint8_t temperatura, uint8_t temperatura_aeroporto)
 {
 	int digito_1, digito_2;
-	// (por fazer) estrutura de controlo para leitura digito a digito
+
 	// decompõe digitos do valor temperatura
 	digito_2 = temperatura % 10;
 	temperatura /= 10;
@@ -95,7 +95,6 @@ void ler_temperatura(uint8_t temperatura, uint8_t temperatura_aeroporto)
 
 void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 {
-<<<<<<< HEAD
 	printf("Humidade local: %d\n", humidade);
 	printf("Humidade aeroporto: %d\n", humidade_aeroporto);
 	printf("--------------\n");
@@ -110,22 +109,6 @@ void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 		digitalWrite(VERDE, LOW);
 	}
 	#endif
-=======
-		printf("--------------\n");
-		printf("Humidade local: %d\n", humidade);
-		printf("Humidade aeroporto: %d\n", humidade_aeroporto);
-
-		#ifdef AAC_RASPBERRY
-		double variacao = humidade * PERCENTAGEM;
-		if ((humidade_aeroporto < (humidade + variacao)) && (humidade_aeroporto > (humidade - variacao))) {
-			digitalWrite(VERMELHO, LOW);
-			digitalWrite(VERDE, HIGH);
-		} else {
-			digitalWrite(VERMELHO, HIGH);
-			digitalWrite(VERDE, LOW);
-		}
-		#endif
->>>>>>> 7ab6049793eff5975ab854c5ccd08b9924af331c
 }
 
 void ler_dados()
@@ -142,11 +125,7 @@ void ler_dados()
 		ler_temperatura(temperatura, temperatura_aeroporto);
 	}
 	else {
-<<<<<<< HEAD
 		printf("Erro de leitura.\n");
-=======
-		printf("Erro de leitura.");
->>>>>>> 7ab6049793eff5975ab854c5ccd08b9924af331c
 	}
 	alarm(TIMER);
 }

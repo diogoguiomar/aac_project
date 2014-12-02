@@ -1,3 +1,12 @@
+/*
+ * AAC 2014/2015 - Projecto
+ *
+ * Grupo 02:
+ * Diogo Guiomar - aluno 21302748
+ * Miguel Tavares - aluno 21304351
+ *
+ * Ficheiro com funções de digitos/traco/ponto
+ */
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
@@ -17,7 +26,7 @@ void traco()
 	digitalWrite(AMARELO, HIGH);
 	softToneWrite(BESOURO, FREQ);
 	delay(TRACO);
-	softToneWrite(BESOURO, 0);
+	softToneWrite(BESOURO, OFF);
 	#endif
 	printf("-");
 }
@@ -25,10 +34,10 @@ void traco()
 void ponto()
 {
 	#ifdef AAC_RASPBERRY
-	softToneWrite(BESOURO, FREQ);
 	digitalWrite(AMARELO, HIGH);
+	softToneWrite(BESOURO, FREQ);
 	delay(PONTO);
-	softToneWrite(BESOURO, 0);
+	softToneWrite(BESOURO, OFF);
 	#endif
 	printf(".");
 }

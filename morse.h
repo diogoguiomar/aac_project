@@ -1,3 +1,12 @@
+/*
+ * AAC 2014/2015 - Projecto
+ *
+ * Grupo 02:
+ * Diogo Guiomar - aluno 21302748
+ * Miguel Tavares - aluno 21304351
+ *
+ */
+ 
 #ifndef __MORSE_H
 #define __MORSE_H
 
@@ -9,6 +18,7 @@
 #define TIMER 15
 #define PERCENTAGEM 0.15
 #define FREQ 1046
+#define OFF 0
 
 #define BESOURO 1 // 18
 #define AMARELO 4 // 23
