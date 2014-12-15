@@ -28,12 +28,13 @@
 void confirma()
 {
 	#ifdef AAC_RASPBERRY
-	// desligar LEDs ao sair
+	// desligar LEDs e buzzer ao sair
 	digitalWrite(AMARELO, LOW);
 	digitalWrite(VERMELHO, LOW);
 	digitalWrite(VERDE, LOW);
+	softToneWrite(BESOURO, OFF);
 	#endif
-	printf("Saiu\n");
+	printf("Terminado\n");
 	exit(0);
 }
 
@@ -99,6 +100,7 @@ void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 	printf("Humidade aeroporto: %d\n", humidade_aeroporto);
 	printf("--------------\n");
 
+	// se a humidade (aeroporto vs local) variar menos de 15%, acende LED verde
 	#ifdef AAC_RASPBERRY
 	double variacao = humidade * PERCENTAGEM;
 	if ((humidade_aeroporto < (humidade + variacao)) && (humidade_aeroporto > (humidade - variacao))) {
