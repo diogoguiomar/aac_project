@@ -7,7 +7,6 @@
  *
  * Ficheiro principal de codigo fonte
  */
- 
 #include <stdio.h>
 #include <signal.h>
 #include <unistd.h>
@@ -25,15 +24,17 @@
 #include "morse_digitos.h"
 #include "dht11ler.h"
 
-void confirma()
+// função para terminar o programa
+void sair()
 {
 	#ifdef AAC_RASPBERRY
 	// desligar LEDs ao sair
 	digitalWrite(AMARELO, LOW);
 	digitalWrite(VERMELHO, LOW);
 	digitalWrite(VERDE, LOW);
+	softToneWrite(BESOURO, OFF);
 	#endif
-	printf("Saiu\n");
+	printf("Terminado\n");
 	exit(0);
 }
 
@@ -97,8 +98,8 @@ void ler_humidade(uint8_t humidade, uint8_t humidade_aeroporto)
 {
 	printf("Humidade local: %d\n", humidade);
 	printf("Humidade aeroporto: %d\n", humidade_aeroporto);
-	printf("--------------\n");
 
+	// verifica se as humidades variam mais de 15%
 	#ifdef AAC_RASPBERRY
 	double variacao = humidade * PERCENTAGEM;
 	if ((humidade_aeroporto < (humidade + variacao)) && (humidade_aeroporto > (humidade - variacao))) {
@@ -127,6 +128,7 @@ void ler_dados()
 	else {
 		printf("Erro de leitura.\n");
 	}
+	printf("--------------\n");
 	alarm(TIMER);
 }
 
@@ -143,6 +145,6 @@ int main(int argc, char** argv)
 	wunder_init();
 	signal(SIGALRM, ler_dados);
 	ler_dados();
-	signal(SIGINT, confirma);
+	signal(SIGINT, sair);
 	for(;;);
 }

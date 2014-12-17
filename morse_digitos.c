@@ -200,6 +200,7 @@ void letra_c()
 		ponto();
 	}
 
+	// deixa sempre o LED amarelo desligado após uma emissão
 	#ifdef AAC_RASPBERRY
 	digitalWrite(AMARELO, LOW);
 	#endif

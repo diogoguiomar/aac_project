@@ -4,9 +4,9 @@
  * Grupo 02:
  * Diogo Guiomar - aluno 21302748
  * Miguel Tavares - aluno 21304351
+ * Filipe Ferreira - aluno 20085702
  *
- */
- 
+*/
 #ifndef __MORSE_H
 #define __MORSE_H
 
@@ -17,8 +17,8 @@
 #define SEPARACAO_LETRA 700
 #define TIMER 15
 #define PERCENTAGEM 0.15
-#define FREQ 1046
-#define OFF 0
+#define FREQ 1046 // fequencia para o besouro
+#define OFF 0 // constante para "desligar" o besouro
 
 #define BESOURO 1 // 18
 #define AMARELO 4 // 23
