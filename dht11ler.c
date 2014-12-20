@@ -1,4 +1,10 @@
 /*
+ * AAC 2014/2015 - Projecto
+ *
+ * Grupo 02:
+ * Diogo Guiomar - aluno 21302748
+ * Miguel Tavares - aluno 21304351
+ *
  * Funcao para leitura do sensor DHT-11.
  */
 #include <stdint.h>

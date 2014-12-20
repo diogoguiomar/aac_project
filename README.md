@@ -70,6 +70,8 @@ Foi criado um morse_digitos.c com a finalidade de conter todas as funções rela
 Foi acrescentado um besouro complementando a transmissão morse feita pelo LED amarelo (em simultâneo)
 Para tal, foi incluído a biblioteca <softTone.h> e utilizadas as funções softToneCreate(int pin) e softToneWriter(int pin, int freq)
 
+Nas fotos da montagem foi utilizado um raspberry pi gpio extension board v2.2, diferente daquele utilizados nas aulas.
+
 Na última parte do video, foi adicionada uma linha de código "humidade += 40" (morse.c linha 101) com o intuito de a diferença das humidades ser inferior a 15% e então a LED verde acender
 http://youtu.be/Twgb64sIBcA
 

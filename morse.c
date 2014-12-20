@@ -4,6 +4,7 @@
  * Grupo 02:
  * Diogo Guiomar - aluno 21302748
  * Miguel Tavares - aluno 21304351
+ * Filipe Ferreira - aluno 20085702
  *
  * Ficheiro principal de codigo fonte
  */
