@@ -4,6 +4,7 @@
 # Para compilar o programa para correr com LEDs e leituras reais (so Raspberry);
 #      make -B AAC_RASPBERRY=1 morse
 
+
 CFLAGS = -Wall
 LDFLAGS = -lm
 
