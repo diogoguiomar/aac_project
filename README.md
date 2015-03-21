@@ -9,8 +9,6 @@ Grupo número 02:
 
 - Miguel Tavares, aluno n.º 21304351
 
-- Filipe Ferreira, aluno n.º 20085702
-
 I - COMPILAÇÃO
 
 1. Quando emitido o comando:
