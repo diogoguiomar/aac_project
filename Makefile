@@ -1,11 +1,3 @@
-/*
- * AAC 2014/2015 - Projecto
- *
- * Grupo 02:
- * Diogo Guiomar - aluno 21302748
- * Miguel Tavares - aluno 21304351
- *
- */
 # Para compilar o programa para correr sem LEDs e com leituras dummy (PC ou Raspberry):
 #      make morse
 #
